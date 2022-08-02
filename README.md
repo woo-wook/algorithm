@@ -6,5 +6,9 @@
 
 ### [Bubble Sort](src/sort/BubbleSort.java)
 
-* Worst : O(n^2)
+* `Worst : O(n^2)`
+
+### [Selection Sort](src/sort/SelectionSort.java)
+
+* `Worst : O(n^2)`
 
