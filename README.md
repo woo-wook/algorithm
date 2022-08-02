@@ -12,3 +12,8 @@
 
 * `Worst : O(n^2)`
 
+### [Insertion Sort](src/sort/InsertionSort.java)
+
+* `Best : Ω(n)` // 최적의 경우 비교를 한번만! 
+* `Worst : O(n^2)`
+
