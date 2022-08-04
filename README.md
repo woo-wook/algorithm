@@ -17,3 +17,13 @@
 * `Best : Ω(n)` // 최적의 경우 비교를 한번만! 
 * `Worst : O(n^2)`
 
+### [Merge Sort](src/sort/MergeSort.java)
+
+Divide and Conquer
+
+* `Worst : O(nlogn)`
+
+생각보다 느림..
+
+
+
