@@ -11,6 +11,10 @@ import java.util.stream.IntStream;
  */
 public class DFS {
     public static void main(String[] args) {
+        new DFS().logic();
+    }
+
+    private void logic() {
         Graph graph = makeGraph(7);
 
         Node start = graph.findRandomNode();
@@ -18,7 +22,7 @@ public class DFS {
         search(start);
     }
 
-    private static void search(Node start) {
+    private void search(Node start) {
         start.visit();
 
         Stack<Node> stack = new Stack<>();
@@ -47,7 +51,7 @@ public class DFS {
         }
     }
 
-    private static Graph makeGraph(int nodeCount) {
+    private Graph makeGraph(int nodeCount) {
         Graph graph = new Graph(nodeCount);
 
         graph.makeEdges(makeDestNodes());
@@ -55,7 +59,7 @@ public class DFS {
         return graph;
     }
 
-    private static int[][] makeDestNodes() {
+    private int[][] makeDestNodes() {
         return new int[][]{
                 {1, 2, 4}, // 0
                 {0, 3, 6}, // 1
@@ -66,60 +70,62 @@ public class DFS {
                 {0, 1, 4}, // 6
         };
     }
-}
 
-class Graph {
-    List<Node> nodes;
+    class Graph {
+        List<Node> nodes;
 
-    public Graph(int nodeCount) {
-        this.nodes = IntStream.range(0, nodeCount)
-                .mapToObj(Node::new)
-                .collect(Collectors.toList());
-    }
+        public Graph(int nodeCount) {
+            this.nodes = IntStream.range(0, nodeCount)
+                    .mapToObj(Node::new)
+                    .collect(Collectors.toList());
+        }
 
-    public void makeEdges(int[][] destNodes) {
-        for(int z = 0; z < destNodes.length; z++) {
-            Node node = nodes.get(z);
+        public void makeEdges(int[][] destNodes) {
+            for(int z = 0; z < destNodes.length; z++) {
+                Node node = nodes.get(z);
 
-            for(int destNode : destNodes[z]) {
-                node.addEdge(nodes.get(destNode));
+                for(int destNode : destNodes[z]) {
+                    node.addEdge(nodes.get(destNode));
+                }
             }
+        }
+
+        public Node findRandomNode() {
+            Random random = new Random();
+            return nodes.get(random.nextInt(nodes.size()));
         }
     }
 
-    public Node findRandomNode() {
-        Random random = new Random();
-        return nodes.get(random.nextInt(nodes.size()));
+    class Node {
+        int nodeNumber;
+        List<Edge> edges = new ArrayList<>();
+        boolean visit;
+
+        public Node(int nodeNumber) {
+            this.nodeNumber = nodeNumber;
+        }
+
+        public boolean isVisit() {
+            return this.visit;
+        }
+
+        public void visit() {
+            System.out.println("visit node " + nodeNumber);
+            this.visit = true;
+        }
+
+        public void addEdge(Node destNode) {
+            this.edges.add(new Edge(destNode));
+        }
+    }
+
+    class Edge {
+        final Node node;
+
+        public Edge(Node node) {
+            this.node = node;
+        }
     }
 }
 
-class Node {
-    int nodeNumber;
-    List<Edge> edges = new ArrayList<>();
-    boolean visit;
 
-    public Node(int nodeNumber) {
-        this.nodeNumber = nodeNumber;
-    }
-
-    public boolean isVisit() {
-        return this.visit;
-    }
-
-    public void visit() {
-        System.out.println("visit node " + nodeNumber);
-        this.visit = true;
-    }
-
-    public void addEdge(Node destNode) {
-        this.edges.add(new Edge(destNode));
-    }
-}
-
-class Edge {
-    final Node node;
-
-    public Edge(Node node) {
-        this.node = node;
-    }
-}
