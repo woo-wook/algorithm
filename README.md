@@ -34,5 +34,15 @@ Divide and Conquer
 
 최악의 경우 O(n^2)까지 소요되지만, 일반적으로는 속도가 빠른 알고리즘, 임계값을 통한 삽입 정렬과의 호환으로 사용 시 효율이 좋음
 
+## 2. Search
+
+### [Depth-first Search](src/search/DFS.java)
+
+* `Worst : O(V + E)` // V = 정점의 수(노드의 수), E = 간선의 수(에지의 수)
+
+최단 거리임을 보장할 수 없음
+
+
+
 
 
